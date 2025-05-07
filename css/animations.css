@@ -1,0 +1,165 @@
+/* 
+ * Advanced CSS Animations for Prints Masters Website
+ * Incorporating techniques from modern web design [[1]](#__1) [[2]](#__2)
+ */
+
+/* 1. KEYFRAME ANIMATIONS (Core Techniques) */
+/* --------------------------------------- */
+@keyframes moveText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Infinite horizontal scroll */
+}
+
+@keyframes glowingBorder {
+    0%, 100% { 
+        background-position: 0 0; 
+        box-shadow: 0 0 10px #D6BC67; /* Added glow effect [[2]](#__2) */
+    }
+    50% { 
+        background-position: 400% 0; 
+        box-shadow: 0 0 20px #D6BC67; /* Enhanced glow at midpoint [[3]](#__3) */
+    }
+}
+
+/* 2. COMPLEX TRANSITIONS (State Changes) */
+/* ------------------------------------- */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px) rotate(-2deg); /* Added subtle rotation [[1]](#__1) */
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.2; 
+    }
+    50% { 
+        transform: scale(1.2); 
+        opacity: 0.4;
+        filter: drop-shadow(0 0 8px rgba(214, 188, 103, 0.6)); /* Glow enhancement [[4]](#__4) */
+    }
+}
+
+/* 3. TEXT EFFECTS (Attention Grabbers) */
+/* ----------------------------------- */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #D6BC67;
+        letter-spacing: normal; /* Added text expansion [[2]](#__2) */
+    }
+    100% {
+        text-shadow: 0 0 15px #D6BC67, 
+                     0 0 30px #D6BC67; /* Multi-layer glow [[3]](#__3) */
+        letter-spacing: 1px;
+    }
+}
+
+/* 4. ADVANCED MOTION EFFECTS */
+/* -------------------------- */
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-20px) rotate(2deg); /* Subtle 3D effect [[1]](#__1) */
+    }
+}
+
+@keyframes gradientFlow {
+    0% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
+}
+
+/* 5. PERFORMANCE OPTIMIZATIONS */
+/* ----------------------------- */
+.optimized-animate {
+    will-change: transform, opacity; /* Prepares browser for animation [[3]](#__3) */
+    backface-visibility: hidden; /* Prevents flickering [[1]](#__1) */
+}
+
+/* 6. ANIMATION APPLICATIONS */
+/* ------------------------- */
+.hero-title {
+    animation: glow 2s infinite alternate ease-in-out; /* Smoother timing [[4]](#__4) */
+}
+
+.hero-section::before {
+    animation: 
+        pulse 5s infinite alternate,
+        gradientFlow 15s infinite ease; /* Combined animations [[2]](#__2) */
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.4, 1) forwards; /* Custom easing [[1]](#__1) */
+}
+
+/* 7. STAGGERED DELAYS (Advanced Choreography) */
+/* ------------------------------------------- */
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+.delay-3 { animation-delay: 0.9s; }
+
+/* 8. RESPONSIVE ADJUSTMENTS */
+/* ------------------------- */
+@media (max-width: 768px) {
+    .text-container p {
+        font-size: 1.2rem;
+        animation-duration: 20s; /* Slower on mobile [[4]](#__4) */
+    }
+    
+    .moving-text-bar::after {
+        height: 3px;
+        animation: glowingBorder 8s infinite; /* Slower glow speed [[3]](#__3) */
+    }
+
+    @keyframes mobilePulse {
+        0%, 100% { transform: scale(0.95); }
+        50% { transform: scale(1); }
+    }
+}
+
+/* 9. HOVER-TO-PLAY ANIMATIONS */
+/* --------------------------- */
+.play-on-hover {
+    animation-play-state: paused;
+}
+.play-on-hover:hover {
+    animation-play-state: running; /* Saves CPU when inactive [[1]](#__1) */
+}
+
+/* 10. 3D TRANSFORM EFFECTS */
+/* ------------------------ */
+@keyframes flipIn {
+    0% {
+        transform: perspective(1000px) rotateY(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: perspective(1000px) rotateY(0);
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.animate {
+    animation-fill-mode: both;
+}
+.animate-once {
+    animation-iteration-count: 1;
+}
+.animate-infinite {
+    animation-iteration-count: infinite;
+}
